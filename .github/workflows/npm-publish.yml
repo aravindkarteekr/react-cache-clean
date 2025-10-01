@@ -1,0 +1,30 @@
+# This workflow will run tests using node and then publish a package to NPM when a release is created
+
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build package
+        run: yarn build
+      - name: Run tests
+        run: npm run test --if-present
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
