@@ -1,6 +1,6 @@
 {
   "name": "react-cache-refresh",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple modern utility to clear cache and reload the application.",
   "keywords": [
     "react",
@@ -10,6 +10,7 @@
     "cache-cleaner",
     "cache-refresh",
     "react-cache",
+    "react-cache-refresh",
     "browser-cache",
     "service-worker",
     "auto-reload",
@@ -31,6 +32,14 @@
   ],
   "license": "ISC",
   "author": "ak",
+  "homepage": "https://github.com/aravindkarteekr/react-cache-refresh#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aravindkarteekr/react-cache-refresh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aravindkarteekr/react-cache-refresh/issues"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -316,18 +316,23 @@ location /meta.json {
 
 **Debug:** Check browser console for version logs and error details.
 
+## 🐛 Issues & Support
+
+Found a bug or have a feature request? Please [open an issue](https://github.com/aravindkarteekr/react-cache-refresh/issues) on GitHub.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-ISC License - see LICENSE file for details.
+This project is licensed under the ISC License.
 
-## 🙏 Acknowledgments
+## 🔗 Links
 
-- Built for React 19 and modern web applications
-- Inspired by the need for seamless user experiences during deployments
+- [GitHub Repository](https://github.com/aravindkarteekr/react-cache-refresh)
+- [NPM Package](https://www.npmjs.com/package/react-cache-refresh)
+- [Report Issues](https://github.com/aravindkarteekr/react-cache-refresh/issues)
 
 ---
 
