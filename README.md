@@ -10,6 +10,8 @@ A modern, lightweight React utility that automatically detects new app versions 
 - **TypeScript Support**: Full TypeScript support with type definitions
 - **Reload Protection**: Prevents infinite reload loops with built-in cooldown mechanism
 - **Error Resilient**: Gracefully handles missing meta.json or network errors
+- **Configurable Logging**: Hide console logs in production with `hideConsoleLogs` option
+- **Custom Loading States**: Show custom loading components during version checks
 - **Zero Dependencies**: Only requires React as a peer dependency
 
 ## 📦 Installation
@@ -45,7 +47,10 @@ const VERSION = "1.0.0"; // This should match your package.json version
 
 function Root() {
   return (
-    <CacheBuster currentAppVersion={VERSION}>
+    <CacheBuster
+      currentAppVersion={VERSION}
+      loadingComponent={<div>Loading...</div>}
+    >
       <App />
     </CacheBuster>
   );
@@ -72,13 +77,14 @@ The main component that wraps your application and handles version checking.
 
 #### Props
 
-| Prop                | Type        | Required | Description                                         |
-| ------------------- | ----------- | -------- | --------------------------------------------------- |
-| `children`          | `ReactNode` | ✅       | Your app components                                 |
-| `currentAppVersion` | `string`    | ✅       | Current version of your app                         |
-| `loadingComponent`  | `ReactNode` | ❌       | Custom loading component (defaults to "Loading...") |
+| Prop                | Type        | Required | Default | Description                                           |
+| ------------------- | ----------- | -------- | ------- | ----------------------------------------------------- |
+| `children`          | `ReactNode` | ✅       | -       | Your app components                                   |
+| `currentAppVersion` | `string`    | ✅       | -       | Current version of your app                           |
+| `loadingComponent`  | `ReactNode` | ❌       | `null`  | Custom loading component (shown during version check) |
+| `hideConsoleLogs`   | `boolean`   | ❌       | `false` | Hide console logs for version checking process        |
 
-#### Example with Custom Loading
+#### Example with Custom Loading and Options
 
 ```tsx
 import React from "react";
@@ -93,6 +99,7 @@ function Root() {
     <CacheBuster
       currentAppVersion={VERSION}
       loadingComponent={<LoadingSpinner />}
+      hideConsoleLogs={process.env.NODE_ENV === "production"}
     >
       <App />
     </CacheBuster>
@@ -121,6 +128,29 @@ const handleClearCache = async () => {
 
 ## 🔧 Advanced Usage
 
+### Hiding Console Logs in Production
+
+For production environments, you might want to hide the version checking console logs:
+
+```tsx
+import React from "react";
+import { CacheBuster } from "react-cache-refresh";
+import App from "./App";
+
+const VERSION = "1.0.0";
+
+function Root() {
+  return (
+    <CacheBuster
+      currentAppVersion={VERSION}
+      hideConsoleLogs={process.env.NODE_ENV === "production"}
+    >
+      <App />
+    </CacheBuster>
+  );
+}
+```
+
 ### Using with Environment Variables
 
 ```tsx
@@ -133,7 +163,10 @@ const VERSION = process.env.REACT_APP_VERSION || "1.0.0";
 
 function Root() {
   return (
-    <CacheBuster currentAppVersion={VERSION}>
+    <CacheBuster
+      currentAppVersion={VERSION}
+      hideConsoleLogs={process.env.NODE_ENV === "production"}
+    >
       <App />
     </CacheBuster>
   );
@@ -170,6 +203,34 @@ function Root() {
     </CacheBuster>
   );
 }
+```
+
+### Console Logging Behavior
+
+By default, react-cache-refresh provides helpful console logs during the version checking process:
+
+- **Version Check**: Shows current and latest versions
+- **Success**: Confirms when versions match
+- **Updates**: Logs when version mismatch is detected
+- **Errors**: Reports any issues with version checking
+
+**Example console output:**
+
+```console
+Current app version: 1.0.0
+Latest app version: 1.0.1
+Version mismatch detected - clearing caches and reloading
+```
+
+You can disable these logs in production using the `hideConsoleLogs` prop:
+
+```tsx
+<CacheBuster
+  currentAppVersion="1.0.0"
+  hideConsoleLogs={process.env.NODE_ENV === "production"}
+>
+  <App />
+</CacheBuster>
 ```
 
 ### Integration with CI/CD
