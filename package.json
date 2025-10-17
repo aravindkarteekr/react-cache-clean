@@ -1,6 +1,6 @@
 {
   "name": "react-cache-refresh",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple modern utility to clear cache and reload the application.",
   "keywords": [
     "react",
