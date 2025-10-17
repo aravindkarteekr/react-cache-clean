@@ -2,11 +2,11 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { CacheBuster } from 'react-cache-clean'
+import { CacheBuster } from 'react-cache-refresh'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <CacheBuster currentAppVersion='1.0.0' loadingComponent={<div>Loading...</div>}>
+    <CacheBuster currentAppVersion='1.0.0' loadingComponent={<div>Loading...</div>} hideConsoleLogs>
       <App />
     </CacheBuster>
   </StrictMode>,

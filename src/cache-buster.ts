@@ -1,14 +1,19 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { clearAllCaches } from "./utils";
 
-export const CacheBuster = ({
-  children,
-  currentAppVersion,
-}: {
+type CacheBusterProps = {
   readonly children: ReactNode;
   readonly loadingComponent?: ReactNode;
   readonly currentAppVersion: string;
-}) => {
+  readonly hideConsoleLogs?: boolean;
+};
+
+export const CacheBuster = ({
+  children,
+  loadingComponent,
+  currentAppVersion,
+  hideConsoleLogs,
+}: CacheBusterProps) => {
   const [loading, setLoading] = useState(true);
   const isCheckingRef = useRef(false);
 
@@ -32,9 +37,10 @@ export const CacheBuster = ({
           lastReloadAttempt &&
           now - parseInt(lastReloadAttempt, 10) < RELOAD_COOLDOWN
         ) {
-          console.warn(
-            "Recent reload detected, continuing with current version"
-          );
+          !hideConsoleLogs &&
+            console.warn(
+              "Recent reload detected, continuing with current version"
+            );
           setLoading(false);
           return;
         }
@@ -44,9 +50,10 @@ export const CacheBuster = ({
 
         // Handle missing meta.json (404 or other errors)
         if (!response.ok) {
-          console.warn(
-            `meta.json not found (${response.status}) - skipping version check`
-          );
+          !hideConsoleLogs &&
+            console.warn(
+              `meta.json not found (${response.status}) - skipping version check`
+            );
           setLoading(false);
           return;
         }
@@ -54,13 +61,16 @@ export const CacheBuster = ({
         const meta = await response.json();
         const latestVersion = meta.version;
 
-        console.log("Current app version:", currentAppVersion);
-        console.log("Latest app version:", latestVersion);
+        if (!hideConsoleLogs) {
+          console.log("Current app version:", currentAppVersion);
+          console.log("Latest app version:", latestVersion);
+        }
 
         if (latestVersion !== currentAppVersion) {
-          console.info(
-            "Version mismatch detected - clearing caches and reloading"
-          );
+          !hideConsoleLogs &&
+            console.info(
+              "Version mismatch detected - clearing caches and reloading"
+            );
 
           // Record reload attempt timestamp to prevent infinite loops
           sessionStorage.setItem("cache-buster-last-reload", now.toString());
@@ -71,13 +81,15 @@ export const CacheBuster = ({
           // Force hard reload - nginx ensures fresh HTML
           globalThis.location.reload();
         } else {
-          console.log("Version check passed - app is up to date");
+          !hideConsoleLogs &&
+            console.log("Version check passed - app is up to date");
           // Clear any previous reload attempt timestamp on successful version match
           sessionStorage.removeItem("cache-buster-last-reload");
           setLoading(false);
         }
       } catch (error) {
-        console.error("Error checking for new version:", error);
+        !hideConsoleLogs &&
+          console.error("Error checking for new version:", error);
         setLoading(false); // Continue even if version check fails
       } finally {
         isCheckingRef.current = false;
@@ -92,7 +104,7 @@ export const CacheBuster = ({
     };
   }, []);
 
-  return loading ? "Loading..." : children;
+  return loading ? loadingComponent : children;
 };
 
 export default CacheBuster;
