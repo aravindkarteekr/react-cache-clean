@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Security Policy
+    url: https://github.com/aravindkarteekr/react-cache-refresh/blob/main/SECURITY.md
+    about: Report security vulnerabilities privately (see security policy for instructions)
+  - name: �💬 Discussions
+    url: https://github.com/aravindkarteekr/react-cache-refresh/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📖 Documentation
+    url: https://github.com/aravindkarteekr/react-cache-refresh#readme
+    about: Read the documentation and usage examples

@@ -1,0 +1,85 @@
+name: 🔒 Security Vulnerability (Private)
+description: Report a security vulnerability (This template is for reference only - DO NOT use for actual security reports)
+title: "[SECURITY]: "
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **IMPORTANT: DO NOT USE THIS TEMPLATE FOR ACTUAL SECURITY REPORTS** ⚠️
+
+        This template is provided for reference only. For actual security vulnerabilities:
+
+        **Please report security issues privately via email to: aravindkarteekr@gmail.com**
+
+        See our [Security Policy](../SECURITY.md) for detailed instructions.
+
+        Public disclosure of security vulnerabilities puts users at risk. Thank you for your understanding.
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **For Reference Only - Security Report Template:**
+
+  - type: textarea
+    id: vulnerability-description
+    attributes:
+      label: Vulnerability Description
+      description: Clear description of the security issue
+      placeholder: Describe the vulnerability...
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity Level
+      description: How severe is this vulnerability?
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact Assessment
+      description: What is the potential impact of this vulnerability?
+      placeholder: |
+        - What data could be exposed?
+        - What actions could an attacker perform?
+        - Who would be affected?
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can this vulnerability be reproduced?
+      placeholder: |
+        1. Step one
+        2. Step two
+        3. Observe the security issue
+
+  - type: textarea
+    id: affected-versions
+    attributes:
+      label: Affected Versions
+      description: Which versions are affected by this vulnerability?
+      placeholder: e.g., 1.0.0 - 1.0.1
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix
+      description: If you have suggestions for fixing this vulnerability
+      placeholder: How might this be addressed?
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **Remember**: This is just a template for reference. 
+
+        **Always report actual security vulnerabilities privately via email!**

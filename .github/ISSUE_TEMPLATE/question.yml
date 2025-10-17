@@ -1,0 +1,65 @@
+name: ❓ Question/Support
+description: Ask a question about using react-cache-refresh
+title: "[Question]: "
+labels: ["question", "support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about using react-cache-refresh? We're here to help!
+
+        **Note:** For bug reports, please use the Bug Report template instead.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Prerequisites
+      description: Please confirm before asking
+      options:
+        - label: I have read the README and documentation
+          required: true
+        - label: I have searched for existing questions/issues
+          required: true
+        - label: This is not a bug report (use Bug Report template for bugs)
+          required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: |
+        Please be as specific as possible:
+        - What are you trying to achieve?
+        - What have you tried so far?
+        - What's confusing or unclear?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide context about your use case
+      placeholder: |
+        - What type of application are you building?
+        - How are you currently using react-cache-refresh?
+        - Any relevant code snippets?
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment (if relevant)
+      description: Your development environment
+      value: |
+        - OS: [e.g. macOS, Windows, Linux]
+        - Node.js version: [e.g. 18.17.0]
+        - React version: [e.g. 18.2.0]
+        - react-cache-refresh version: [e.g. 1.0.1]
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other details that might help us answer your question
+      placeholder: Links, screenshots, code examples, etc.

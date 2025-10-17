@@ -30,7 +30,7 @@
     "cache-management",
     "browser-refresh"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "author": "ak",
   "homepage": "https://github.com/aravindkarteekr/react-cache-refresh#readme",
   "repository": {
